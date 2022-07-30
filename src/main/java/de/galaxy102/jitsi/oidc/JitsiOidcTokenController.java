@@ -47,7 +47,7 @@ public class JitsiOidcTokenController {
     @Produces(MediaType.TEXT_HTML)
     public Response returnWithToken(@PathParam("jitsiRoomId") String jitsiRoomId) {
         JitsiJwtUserData jitsiUserInfo = new JitsiJwtUserData(
-                this.idToken.getSubject(),
+                this.idToken.getName(),
                 (String) this.idToken.claim(Claims.full_name).or(() -> idToken.claim("name")).orElse(idToken.getName()),
                 (String) this.idToken.claim(Claims.email).orElseThrow(() -> new JitsiOidcTokenException("Missing email claim.")),
                 (String) this.idToken.claim(this.jitsiOidcConfig.avatarClaim()).orElse("")
