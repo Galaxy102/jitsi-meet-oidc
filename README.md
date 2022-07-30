@@ -2,9 +2,12 @@
 
 This application allows Jitsi to authenticate using OpenID Connect.
 
+It is licensed under the MIT License.
+
 ## How to run
 
-The normal use case would be to ship this application together with your Jitsi cluster behind a reverse proxy, for example with [docker-jitsi-meet](https://github.com/jitsi/docker-jitsi-meet).
+The normal use case would be to ship this application together with your Jitsi cluster behind a reverse proxy, for example
+with [docker-jitsi-meet](https://github.com/jitsi/docker-jitsi-meet).
 
 You should set the following environment variables on the Jitsi containers (if you use the official builds):
 
