@@ -29,6 +29,7 @@ jitsi-oidc:
     JITSI_OIDC_CLIENT_ID:             # OpenID client ID
     JITSI_OIDC_CLIENT_SECRET:         # OpenID client secret
     # Optional:
+    JITSI_OIDC_BEHIND_PROXY:          # Set to "true" to trust X-Forwarded headers, needed behind reverse proxies
     JITSI_JWT_APPID: jitsi-oidc       # Same value as JWT_APP_ID, can be omitted when using the default
     JITSI_JWT_VALIDITY: 30            # Validity of emitted JWT in seconds -> Time until the redirect must have happened
     JITSI_OIDC_AVATAR_CLAIM: picture  # Claim containing link to user avatar in OpenID token

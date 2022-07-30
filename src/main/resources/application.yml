@@ -16,6 +16,10 @@ quarkus:
         - profile
   http:
     root-path: ${JITSI_AUTH_BASE_PATH:/.auth/}
+    proxy:
+      enable-forwarded-host: ${JITSI_OIDC_BEHIND_PROXY:false}
+      proxy-address-forwarding: ${JITSI_OIDC_BEHIND_PROXY:false}
+      allow-x-forwarded: ${JITSI_OIDC_BEHIND_PROXY:false}
 
 "%prod":
   quarkus:
