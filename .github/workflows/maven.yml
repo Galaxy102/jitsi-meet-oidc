@@ -32,6 +32,6 @@ jobs:
         -Dquarkus.container-image.push=true
         -Dquarkus.container-image.group=galaxy102
         -Dquarkus.container-image.additional-tags=latest
-        -Dquarkus.container-image.username=$DOCKER_USERNAME
-        -Dquarkus.container-image.password=$DOCKER_PASSWORD
+        -Dquarkus.container-image.username=${{ secrets.DOCKER_USERNAME }}
+        -Dquarkus.container-image.password=${{ secrets.DOCKER_PASSWORD }}
         --file pom.xml
