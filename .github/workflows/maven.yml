@@ -44,8 +44,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Re-Tag and Push image
         uses: akhilerm/tag-push-action@v2.0.0
         with:
           src: docker.io/galaxy102/jitsi-meet-oidc:latest
-          dst: docker.io/galaxy102/jitsi-meet-oidc:stable
+          dst: |
+            ghcr.io/galaxy102/jitsi-meet-oidc:stable
+            ghcr.io/galaxy102/jitsi-meet-oidc:${{ github.ref_name }}
