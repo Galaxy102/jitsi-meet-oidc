@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 18
@@ -35,3 +33,19 @@ jobs:
         -Dquarkus.container-image.username=${{ secrets.DOCKER_USERNAME }}
         -Dquarkus.container-image.password=${{ secrets.DOCKER_PASSWORD }}
         --file pom.xml
+  update-stable-tag:
+    needs:
+      - build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Re-Tag and Push image
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/galaxy102/jitsi-meet-oidc:latest
+          dst: docker.io/galaxy102/jitsi-meet-oidc:stable
