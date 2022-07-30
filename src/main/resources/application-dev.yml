@@ -1,0 +1,9 @@
+jitsi:
+  jwt:
+    secret: very-long-top-secret-key-1337-42
+  oidc:
+    return-url: http://localhost:8080/.auth/validate
+quarkus:
+  keycloak:
+    devservices:
+      realm-path: dev/keycloak.json

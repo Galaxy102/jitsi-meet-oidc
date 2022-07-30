@@ -1,0 +1,26 @@
+jitsi:
+  jwt:
+    validity: ${JITSI_JWT_VALIDITY_SECONDS:30}
+    app-id: ${JITSI_JWT_APPID:jitsi-oidc}
+    secret: ${JITSI_JWT_SECRET}
+    subject-url: ${jitsi.oidc.return-url}
+  oidc:
+    avatar-claim: ${JITSI_OIDC_AVATAR_CLAIM:picture}
+    return-url: ${JITSI_BASE_URL}
+quarkus:
+  oidc:
+    application-type: web-app
+    authentication:
+      scopes:
+        - email
+        - profile
+  http:
+    root-path: ${JITSI_AUTH_BASE_PATH:/.auth/}
+
+"%prod":
+  quarkus:
+    oidc:
+      auth-server-url: ${JITSI_OIDC_REALM_URL}
+      client-id: ${JITSI_OIDC_CLIENT_ID}
+      credentials:
+        secret: ${JITSI_OIDC_CLIENT_SECRET}
