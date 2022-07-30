@@ -37,6 +37,7 @@ public class JitsiJwtProvider {
                 .issuer(this.jwtConfig.appId())
                 .expiresIn(Duration.ofSeconds(this.jwtConfig.validity()))
                 .subject(calculateSubject(this.jwtConfig.jitsiUrl()))
+                .audience(this.jwtConfig.appId())
                 .claim(JitsiJwtClaims.ROOM, roomId)
                 .claim(JitsiJwtClaims.CONTEXT, userData.forJwt())
                 .signWithSecret(this.jwtConfig.secret());
