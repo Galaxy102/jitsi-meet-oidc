@@ -1,6 +1,7 @@
 package de.galaxy102.jitsi.jwt;
 
 import io.smallrye.jwt.build.Jwt;
+import org.eclipse.microprofile.jwt.Claims;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -8,6 +9,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.net.URL;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 /**
  * Service to create JWT conforming Jitsi's specification
@@ -35,6 +38,7 @@ public class JitsiJwtProvider {
         // Claims see https://github.com/jitsi/lib-jitsi-meet/blob/master/doc/tokens.md#token-structure
         return Jwt
                 .issuer(this.jwtConfig.appId())
+                .claim(Claims.nbf, Instant.now().getEpochSecond())
                 .expiresIn(Duration.ofSeconds(this.jwtConfig.validity()))
                 .subject(calculateSubject(this.jwtConfig.jitsiUrl()))
                 .audience(this.jwtConfig.appId())
