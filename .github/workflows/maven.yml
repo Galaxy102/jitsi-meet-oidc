@@ -57,5 +57,6 @@ jobs:
         with:
           src: docker.io/galaxy102/jitsi-meet-oidc:latest
           dst: |
+            docker.io/galaxy102/jitsi-meet-oidc:stable
             ghcr.io/galaxy102/jitsi-meet-oidc:stable
             ghcr.io/galaxy102/jitsi-meet-oidc:${{ github.ref_name }}
